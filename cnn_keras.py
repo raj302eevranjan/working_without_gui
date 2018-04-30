@@ -124,7 +124,7 @@ start = datetime.now()
 # Hyperparameters
 epochs = 50
 batch_size = 32
-imageShape = (70, 70)
+imageShape = (256, 256)
 
 checkpointer = ModelCheckpoint(filepath='weights.hdf5', verbose=1, save_best_only=True)
 
