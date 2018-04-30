@@ -139,16 +139,16 @@ model.compile(  loss = keras.losses.categorical_crossentropy,
 print('Done Compiling Model...')
 
 print('Training...')
-# model.fit(x_train, y_train,
-#           batch_size=batch_size,
-#           epochs=epochs,
-#           verbose=1,
-#           callbacks= [ checkpointer ],
-#           validation_data= (x_test, y_test))
+model.fit(x_train, y_train,
+          batch_size=batch_size,
+          epochs=epochs,
+          verbose=1,
+          callbacks= [ checkpointer ],
+          validation_data= (x_test, y_test))
 print('Training Completed')
 
 # Loading trained weights
-model.load_weights('weights.hdf5')
+# model.load_weights('weights.hdf5')
 
 print('Testing with train data:')
 score_train = model.evaluate(x_train, y_train, verbose=1)
