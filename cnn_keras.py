@@ -7,6 +7,7 @@ from skimage.transform import resize
 from datetime import datetime
 import keras
 from keras.models import Sequential
+from keras.layers import BatchNormalization
 from keras.layers.convolutional import Conv2D, MaxPooling2D
 from keras.layers.advanced_activations import LeakyReLU
 from keras.layers.core import Activation, Flatten, Dense, Dropout
@@ -18,11 +19,13 @@ def build_model(hight, weight, num_classes):
 
     # Layer 1
     model.add(Conv2D(4, (3,3), activation='relu', padding="same", input_shape = (hight, weight, 1)))
+    model.add(BatchNormalization())
     model.add(MaxPooling2D())
 
     model.add(Dropout(0.2))
     # Layer 2
     model.add(Conv2D(8, (3,3), padding="same"))
+    model.add(BatchNormalization())
     model.add(MaxPooling2D())
     model.add(LeakyReLU(alpha=0.03))
 
@@ -46,7 +49,8 @@ def build_model(hight, weight, num_classes):
 
 
 def shuffle(x, y):
-    seed = np.random.randint(512, 1024, size=1)[0]
+    # seed = np.random.randint(512, 1024, size=1)[0]
+    seed = 1024
     rand_state = np.random.RandomState(seed)
     rand_state.shuffle(x)
     rand_state.seed(seed)
