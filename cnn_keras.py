@@ -30,16 +30,19 @@ def build_model(hight, weight, num_classes):
     model.add(LeakyReLU(alpha=0.03))
 
     model.add(Dropout(0.25))
-    # # Layer 3
-    # model.add(Conv2D(8, (5,5), padding="same"))
-    # model.add(MaxPooling2D())
-    # model.add(LeakyReLU(alpha=0.03))
+    # Layer 3
+    model.add(Conv2D(16, (5,5), padding="same"))
+    model.add(MaxPooling2D())
+    model.add(LeakyReLU(alpha=0.03))
 
     # model.add(Dropout(0.5))
     # Fully Connected Layer
 
     model.add(Flatten())
-    model.add(Dense(128))
+    model.add(Dense(100))
+    model.add(Activation('relu'))
+
+    model.add(Dense(100))
     model.add(Activation('relu'))
 
     model.add(Dense(num_classes))
@@ -131,10 +134,10 @@ imageShape = (256, 256)
 
 # Model
 model = build_model(imageShape[0], imageShape[1], 3)
+# Compiling Model
 print('Done Building Model...')
 
 (x_train, y_train), (x_test, y_test) = get_data(imageShape)
-# Compiling Model
 model.compile(  loss = keras.losses.categorical_crossentropy,
                 optimizer = keras.optimizers.Adadelta(),
                 metrics=['accuracy'])
