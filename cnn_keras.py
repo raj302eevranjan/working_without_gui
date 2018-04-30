@@ -123,9 +123,6 @@ epochs = 50
 batch_size = 32
 imageShape = (256, 256)
 
-
-# Storing best save only weights
-checkpointer = ModelCheckpoint(filepath='weights.hdf5', verbose=1, save_best_only=True)
 # Model
 model = build_model(imageShape[0], imageShape[1], 3)
 print('Done Building Model...')
@@ -141,6 +138,10 @@ print('Done Compiling Model...')
 def train():
     start = datetime.now()
     print('Training...')
+
+    # Storing best save only weights
+    checkpointer = ModelCheckpoint(filepath='weights123.hdf5', verbose=1, save_best_only=True)
+
     model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
@@ -177,3 +178,4 @@ def test(weights_file):
     print('Test Loss: {}'.format(score_test[0]))
     print('Test Accuracy: {}'.format(score_test[1]))
 
+train()
