@@ -118,49 +118,62 @@ def get_data(imageShape):
 
 # ---------------- Training -------------------------
 
-
-start = datetime.now()
-
 # Hyperparameters
 epochs = 50
 batch_size = 32
 imageShape = (256, 256)
 
-checkpointer = ModelCheckpoint(filepath='weights.hdf5', verbose=1, save_best_only=True)
 
+# Storing best save only weights
+checkpointer = ModelCheckpoint(filepath='weights.hdf5', verbose=1, save_best_only=True)
+# Model
 model = build_model(imageShape[0], imageShape[1], 3)
 print('Done Building Model...')
-(x_train, y_train), (x_test, y_test) = get_data(imageShape)
 
+(x_train, y_train), (x_test, y_test) = get_data(imageShape)
+# Compiling Model
 model.compile(  loss = keras.losses.categorical_crossentropy,
                 optimizer = keras.optimizers.Adadelta(),
                 metrics=['accuracy'])
 
 print('Done Compiling Model...')
 
-print('Training...')
-model.fit(x_train, y_train,
+def train():
+    start = datetime.now()
+    print('Training...')
+    model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
           verbose=1,
           callbacks= [ checkpointer ],
           validation_data= (x_test, y_test))
-print('Training Completed')
+    print('Training Completed')
 
-# Loading trained weights
-# model.load_weights('weights.hdf5')
+    print('Testing with train data:')
+    score_train = model.evaluate(x_train, y_train, verbose=1)
 
-print('Testing with train data:')
-score_train = model.evaluate(x_train, y_train, verbose=1)
+    print('Testing with test data:')
+    score_test = model.evaluate(x_test, y_test, verbose=1)
 
-print('Testing with test data:')
-score_test = model.evaluate(x_test, y_test, verbose=1)
+    end = datetime.now()
 
-end = datetime.now()
+    print()
+    print('Time Took for training and testing: {}'.format(str(end - start)))
+    print('Test Loss: {}'.format(score_test[0]))
+    print('Test Accuracy: {}'.format(score_test[1]))
+    print()
+    print('Train Loss: {}'.format(score_train[0]))
+    print('Train Accuracy: {}'.format(score_train[1]))
 
-print('Time Took: {}'.format(str(end - start)))
-print('Test Loss: {}'.format(score_test[0]))
-print('Test Accuracy: {}'.format(score_test[1]))
+def test(weights_file):
+    start = datetime.now()
+    model.load_weights(weights_file)
+    print('Testing with test data:')
+    score_test = model.evaluate(x_test, y_test, verbose=1)
 
-print('Train Loss: {}'.format(score_train[0]))
-print('Train Accuracy: {}'.format(score_train[1]))
+    end = datetime.now()
+
+    print('Time Took for testing: {}'.format(str(end - start)))
+    print('Test Loss: {}'.format(score_test[0]))
+    print('Test Accuracy: {}'.format(score_test[1]))
+
