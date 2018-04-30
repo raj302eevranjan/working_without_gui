@@ -126,7 +126,7 @@ epochs = 50
 batch_size = 32
 imageShape = (70, 70)
 
-checkpointer = ModelCheckpoint(filepath='weights.hdf5', verbose=1, save_best_only=True)
+# checkpointer = ModelCheckpoint(filepath='weights.hdf5', verbose=1, save_best_only=True)
 
 model = build_model(imageShape[0], imageShape[1], 3)
 print('Done Building Model...')
@@ -139,18 +139,28 @@ model.compile(  loss = keras.losses.categorical_crossentropy,
 print('Done Compiling Model...')
 
 print('Training...')
-model.fit(x_train, y_train,
-          batch_size=batch_size,
-          epochs=epochs,
-          verbose=1,
-          callbacks= [ checkpointer ],
-          validation_data= (x_test, y_test))
+# model.fit(x_train, y_train,
+#           batch_size=batch_size,
+#           epochs=epochs,
+#           verbose=1,
+#           callbacks= [ checkpointer ],
+#           validation_data= (x_test, y_test))
 print('Training Completed')
 
-score = model.evaluate(x_test, y_test, verbose=1)
+# Loading trained weights
+model.load_weights('weights.hdf5')
+
+print('Testing with train data:')
+score_train = model.evaluate(x_train, y_train, verbose=1)
+
+print('Testing with test data:')
+score_test = model.evaluate(x_test, y_test, verbose=1)
 
 end = datetime.now()
 
 print('Time Took: {}'.format(str(end - start)))
-print('Test Loss: {}'.format(score[0]))
-print('Test Accuracy: {}'.format(score[1]))
+print('Test Loss: {}'.format(score_test[0]))
+print('Test Accuracy: {}'.format(score_test[1]))
+
+print('Train Loss: {}'.format(score_train[0]))
+print('Train Accuracy: {}'.format(score_train[1]))
