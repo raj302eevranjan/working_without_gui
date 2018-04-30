@@ -19,13 +19,13 @@ def build_model(hight, weight, num_classes):
 
     # Layer 1
     model.add(Conv2D(4, (3,3), activation='relu', padding="same", input_shape = (hight, weight, 1)))
-    model.add(BatchNormalization())
+    # model.add(BatchNormalization())
     model.add(MaxPooling2D())
 
     model.add(Dropout(0.2))
     # Layer 2
     model.add(Conv2D(8, (3,3), padding="same"))
-    model.add(BatchNormalization())
+    # model.add(BatchNormalization())
     model.add(MaxPooling2D())
     model.add(LeakyReLU(alpha=0.03))
 
