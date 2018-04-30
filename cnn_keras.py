@@ -126,7 +126,7 @@ epochs = 50
 batch_size = 32
 imageShape = (70, 70)
 
-# checkpointer = ModelCheckpoint(filepath='weights.hdf5', verbose=1, save_best_only=True)
+checkpointer = ModelCheckpoint(filepath='weights.hdf5', verbose=1, save_best_only=True)
 
 model = build_model(imageShape[0], imageShape[1], 3)
 print('Done Building Model...')
