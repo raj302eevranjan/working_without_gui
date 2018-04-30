@@ -169,13 +169,21 @@ def train():
 def test(weights_file):
     start = datetime.now()
     model.load_weights(weights_file)
+
+    print('Testing with train data:')
+    score_train = model.evaluate(x_train, y_train, verbose=1)
+
     print('Testing with test data:')
     score_test = model.evaluate(x_test, y_test, verbose=1)
-
     end = datetime.now()
 
-    print('Time Took for testing: {}'.format(str(end - start)))
+
+    print('Time Took for training and testing: {}'.format(str(end - start)))
     print('Test Loss: {}'.format(score_test[0]))
     print('Test Accuracy: {}'.format(score_test[1]))
+    print()
+    print('Train Loss: {}'.format(score_train[0]))
+    print('Train Accuracy: {}'.format(score_train[1]))
 
 train()
+# test('Weight-0.85.hdf5')
