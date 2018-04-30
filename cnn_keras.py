@@ -28,9 +28,9 @@ def build_model(hight, weight, num_classes):
 
     model.add(Dropout(0.25))
     # # Layer 3
-    model.add(Conv2D(8, (5,5), padding="same"))
-    model.add(MaxPooling2D())
-    model.add(LeakyReLU(alpha=0.03))
+    # model.add(Conv2D(8, (5,5), padding="same"))
+    # model.add(MaxPooling2D())
+    # model.add(LeakyReLU(alpha=0.03))
 
     # model.add(Dropout(0.5))
     # Fully Connected Layer
