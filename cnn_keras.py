@@ -110,8 +110,10 @@ def get_data(imageShape):
     y.extend(normal_label)
     shuffle(x, y)
 
-    x_train, x_test = x[:int(len(x)*0.7)], x[int(len(x)*0.3):]
-    y_train, y_test = y[:int(len(x)*0.7)], y[int(len(x)*0.3):]
+    train_size = int(len(x) * 0.8)
+
+    x_train, x_test = x[:train_size], x[train_size:]
+    y_train, y_test = y[:train_size], y[train_size:]
 
     x_train = np.array(x_train, dtype = np.float32) / 255
     y_train = np.array(y_train, dtype = np.float32)
