@@ -3,7 +3,6 @@ from __future__ import print_function
 import cv2 as cv
 import numpy as np
 
-from skimage.transform import resize
 from datetime import datetime
 import keras
 from keras.models import Sequential
@@ -18,18 +17,19 @@ def build_model(hight, weight, num_classes):
     model = Sequential()
 
     # Layer 1
-    model.add(Conv2D(4, (3,3), activation='relu', padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
     model.add(BatchNormalization())
     model.add(MaxPooling2D())
+    model.add(LeakyReLU(alpha=0.03))
 
-    model.add(Dropout(0.2))
+    #model.add(Dropout(0.2))
     # Layer 2
     model.add(Conv2D(8, (3,3), padding="same"))
     model.add(BatchNormalization())
     model.add(MaxPooling2D())
     model.add(LeakyReLU(alpha=0.03))
 
-    model.add(Dropout(0.25))
+    #model.add(Dropout(0.25))
     # Layer 3
     model.add(Conv2D(16, (5,5), padding="same"))
     model.add(BatchNormalization())
