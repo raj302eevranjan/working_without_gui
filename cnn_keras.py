@@ -18,24 +18,30 @@ def build_model(hight, weight, num_classes):
 
     # Layer 1
     model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(LeakyReLU(alpha=0.03))
     # Layer 2
     model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
     model.add(AveragePooling2D())
+    model.add(LeakyReLU(alpha=0.03))
 
     # Layer 3
     model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
     model.add(AveragePooling2D())
+    model.add(LeakyReLU(alpha=0.03))
 
     # Layer 4
     model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
     model.add(AveragePooling2D())
+    model.add(LeakyReLU(alpha=0.03))
 
     # Layer 5
     model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(LeakyReLU(alpha=0.03))
 
     # Layer 6
     model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
     model.add(AveragePooling2D())
+    
 
 
     # Fully Connected Layer
