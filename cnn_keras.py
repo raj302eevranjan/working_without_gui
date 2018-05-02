@@ -30,7 +30,7 @@ def build_model(hight, weight, num_classes):
     model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
     model.add(LeakyReLU(alpha=0.03))
     model.add(AveragePooling2D())
-    
+
     # Layer 4
     model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
     model.add(LeakyReLU(alpha=0.03))
@@ -126,8 +126,8 @@ def get_data(imageShape):
     train_size = int(len(x) * 0.8)
     train = True
 
-    x_train, x_test = x[:int(train)], x[train_size:]
-    y_train, y_test = y[:int(train)], y[train_size:]
+    x_train, x_test = x[:int(train)*len(x)], x[train_size:]
+    y_train, y_test = y[:int(train)*len(x)], y[train_size:]
 
     x_train = np.array(x_train, dtype = np.float32) / 255
     y_train = np.array(y_train, dtype = np.float32)
