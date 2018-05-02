@@ -131,8 +131,8 @@ def get_data(imageShape):
 
 # Hyperparameters
 epochs = 50
-batch_size = 32
-imageShape = (256, 256)
+batch_size = 5
+imageShape = (224, 224)
 
 # Model
 model = build_model(imageShape[0], imageShape[1], 3)
