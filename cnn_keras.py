@@ -41,7 +41,7 @@ def build_model(hight, weight, num_classes):
     # Layer 6
     model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
     model.add(AveragePooling2D())
-    
+
 
 
     # Fully Connected Layer
@@ -138,7 +138,7 @@ def get_data(imageShape):
 
 # Hyperparameters
 epochs = 50
-batch_size = 5
+batch_size = 32
 imageShape = (224, 224)
 
 # Model
