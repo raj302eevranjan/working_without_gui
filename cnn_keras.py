@@ -7,7 +7,7 @@ from datetime import datetime
 import keras
 from keras.models import Sequential
 from keras.layers import BatchNormalization
-from keras.layers.convolutional import Conv2D, MaxPooling2D
+from keras.layers.convolutional import Conv2D, MaxPooling2D, AveragePooling2D
 from keras.layers.advanced_activations import LeakyReLU
 from keras.layers.core import Activation, Flatten, Dense, Dropout
 from keras.callbacks import ModelCheckpoint
