@@ -116,7 +116,7 @@ def get_data(imageShape):
     y.extend(dense_gland_label)
     shuffle(x, y)
 
-    train_size = int(len(x) * 0.9)
+    train_size = int(len(x) * 0.8)
     train = True
 
     x_train, x_test = x[:train_size], x[train_size:]
