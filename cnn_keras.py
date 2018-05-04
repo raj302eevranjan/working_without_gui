@@ -1,5 +1,7 @@
 from __future__ import print_function
 
+import os
+
 import cv2 as cv
 import numpy as np
 
@@ -188,22 +190,25 @@ def train():
 
 def test(weights_file):
     start = datetime.now()
+    wpath = "weights_try6.hdf5"
+    ipath = glob(os.path.join("dataset", "*.pgm"))
+    arrList = []
+
+    for path in ipath:
+        img = cv.imread(path)
+        img = cv.resize(img, (imageShape))
+        arrList.append(img)
+
+    x_test = np.array(arrList)
+
+    x_test = x_test.astype('float32')
+    x_test /= 255
+
     model.load_weights(weights_file)
 
-    print('Testing with train data:')
-    score_train = model.evaluate(x_train, y_train, verbose=1)
+    output = model.predict_classes(x_test, verbose=1)
+    print(output)
 
-    print('Testing with test data:')
-    score_test = model.evaluate(x_test, y_test, verbose=1)
-    end = datetime.now()
-
-
-    print('Time Took for training and testing: {}'.format(str(end - start)))
-    print('Test Loss: {}'.format(score_test[0]))
-    print('Test Accuracy: {}'.format(score_test[1]))
-    print()
-    print('Train Loss: {}'.format(score_train[0]))
-    print('Train Accuracy: {}'.format(score_train[1]))
 
 train()
 # test('Weight-0.85.hdf5')
