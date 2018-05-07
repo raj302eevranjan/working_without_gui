@@ -104,4 +104,4 @@ def test(weights_file):
             print("{0:5} Malignant".format(name))
 
 # train()
-test('Weight-0.85.hdf5')
+test('weights-img-0.99.hdf5')
