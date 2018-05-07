@@ -104,4 +104,4 @@ def test(weights_file):
             print("{0:5} Malignant".format(name))
 
 # train()
-test('weights 99% accuracy.hdf5')
+test('Weight-0.85.hdf5')
