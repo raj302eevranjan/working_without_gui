@@ -97,30 +97,39 @@ def get_data(imageShape):
     misc_file = open('dataset/MISC.txt')
     spic_file = open('dataset/SPIC.txt')
 
-    fatty_gland_file = open('dataset/Fatty-Gand.txt')
-    dense_gland_file = open('dataset/Dense-Gand.txt')
+    arch = [line.strip() for line in arch_file.readlines()]
+    asym = [line.strip() for line in asym_file.readlines()]
+    calc = [line.strip() for line in calc_file.readlines()]
+    circ = [line.strip() for line in circ_file.readlines()]
+    norm = [line.strip() for line in norm_file.readlines()]
+    misc = [line.strip() for line in misc_file.readlines()]
+    spic = [line.strip() for line in spic_file.readlines()]
 
-    fatty = [line.strip() for line in fatty_file.readlines()]
-
-    fatty_gland = [line.strip() for line in fatty_gland_file.readlines()]
-
-    dense_gland = [line.strip() for line in dense_gland_file.readlines()]
-
-    fatty_img, fatty_label = read_from(fatty, [0,1,0])
-
-    fatty_gland_img, fatty_gland_label = read_from(fatty_gland, [0,0,1])
-
-    dense_gland, dense_gland_label = read_from(dense_gland, [1,0,0])
+    arch_img, arch_label = read_from(arch, [0,0,1])
+    asym_img, asym_label = read_from(asym, [0,0,1])
+    calc_img, calc_label = read_from(calc, [0,0,1])
+    circ_img, circ_label = read_from(circ, [0,0,1])
+    norm_img, norm_label = read_from(norm, [0,0,1])
+    misc_img, misc_label = read_from(misc, [0,0,1])
+    spic_img, spic_label = read_from(spic, [0,0,1])
 
     x = []
-    x.extend(fatty_img)
-    x.extend(fatty_gland_img)
-    x.extend(dense_gland)
+    x.extend(arch_img)
+    x.extend(asym_img)
+    x.extend(calc_img)
+    x.extend(circ_img)
+    x.extend(norm_img)
+    x.extend(misc_img)
+    x.extend(spic_img)
 
     y = []
-    y.extend(fatty_label)
-    y.extend(fatty_gland_label)
-    y.extend(dense_gland_label)
+    y.extend(arch_label)
+    y.extend(asym_label)
+    y.extend(calc_label)
+    y.extend(circ_label)
+    y.extend(norm_label)
+    y.extend(misc_label)
+    y.extend(spic_label)
     shuffle(x, y)
 
     train_size = int(len(x) * 0.9)
@@ -144,7 +153,7 @@ batch_size = 32
 imageShape = (224, 224)
 
 # Model
-model = build_model(imageShape[0], imageShape[1], 3)
+model = build_model(imageShape[0], imageShape[1], 7)
 # Compiling Model
 print('Done Building Model...')
 
