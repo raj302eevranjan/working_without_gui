@@ -153,7 +153,7 @@ def train():
     print('Training...')
 
     # Storing best save only weights
-    checkpointer = ModelCheckpoint(filepath='weights123.hdf5', verbose=1, save_best_only=True)
+    checkpointer = ModelCheckpoint(filepath='fat_dense_glandular.hdf5', verbose=1, save_best_only=True)
 
     model.fit(x_train, y_train,
           batch_size=batch_size,

@@ -105,4 +105,4 @@ def test(weights_file):
             print("{0:5} Dense Gland".format(name))
 
 # train()
-test('weights123.hdf5')
+test('fat_dense_glandular.hdf5')
