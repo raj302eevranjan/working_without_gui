@@ -114,18 +114,17 @@ def get_data(imageShape):
     normal_img, normal_label = read_from(normal, [1,0,0])
 
     x = []
-    x.extend(malignant_img)
     x.extend(benign_img)
+    x.extend(malignant_img)
     x.extend(normal_img)
 
     y = []
     y.extend(benign_label)
-
     y.extend(malignant_label)
     y.extend(normal_label)
     shuffle(x, y)
 
-    train_size = int(len(x) * 0.8)
+    train_size = int(len(x) * 1.0)
     train = True
 
     x_train, x_test = x[:train_size], x[train_size:]
