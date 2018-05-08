@@ -127,8 +127,8 @@ def get_data(imageShape):
     train_size = int(len(x) * 0.99)
     train = True
 
-    x_train, x_test = x[:train], x[train_size:]
-    y_train, y_test = y[:train], y[train_size:]
+    x_train, x_test = x[:train_size], x[train_size:]
+    y_train, y_test = y[:train_size], y[train_size:]
 
     x_train = np.array(x_train, dtype = np.float32) / 255
     y_train = np.array(y_train, dtype = np.float32)
