@@ -124,7 +124,7 @@ def get_data(imageShape):
     y.extend(normal_label)
     shuffle(x, y)
 
-    train_size = int(len(x) * 1.0)
+    train_size = int(len(x) * 0.99)
     train = True
 
     x_train, x_test = x[:train_size], x[train_size:]
