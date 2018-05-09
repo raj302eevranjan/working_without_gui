@@ -21,27 +21,27 @@ def build_model(hight, weight, num_classes):
     model.add(LeakyReLU(alpha=0.03))
 
     # Layer 2
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
     model.add(MaxPooling2D())
     
 
     # Layer 3
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
     model.add(MaxPooling2D())
 
     # Layer 4
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
     model.add(MaxPooling2D())
 
     # Layer 5
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
 
     # Layer 6
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
     model.add(MaxPooling2D())
 
@@ -132,7 +132,7 @@ def get_data(imageShape):
     y.extend(spic_label)
     shuffle(x, y)
 
-    train_size = int(len(x) * 0.9)
+    train_size = int(len(x) * 0.99)
     train = True
 
     x_train, x_test = x[:train_size], x[train_size:]
@@ -153,7 +153,7 @@ batch_size = 32
 imageShape = (224, 224)
 
 # Model
-model = build_model(imageShape[0], imageShape[1], 7)
+model = build_model(imageShape[0], imageShape[1], 3)
 # Compiling Model
 print('Done Building Model...')
 

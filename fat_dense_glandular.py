@@ -21,27 +21,27 @@ def build_model(hight, weight, num_classes):
     model.add(LeakyReLU(alpha=0.03))
 
     # Layer 2
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
     model.add(MaxPooling2D())
     
 
     # Layer 3
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
     model.add(MaxPooling2D())
 
     # Layer 4
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
     model.add(MaxPooling2D())
 
     # Layer 5
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
 
     # Layer 6
-    model.add(Conv2D(4, (3,3), padding="same", input_shape = (hight, weight, 1)))
+    model.add(Conv2D(4, (3,3), padding="same"))
     model.add(LeakyReLU(alpha=0.03))
     model.add(MaxPooling2D())
 
