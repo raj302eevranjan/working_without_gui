@@ -105,13 +105,13 @@ def get_data(imageShape):
     misc = [line.strip() for line in misc_file.readlines()]
     spic = [line.strip() for line in spic_file.readlines()]
 
-    arch_img, arch_label = read_from(arch, [0,0,1])
-    asym_img, asym_label = read_from(asym, [0,0,1])
-    calc_img, calc_label = read_from(calc, [0,0,1])
-    circ_img, circ_label = read_from(circ, [0,0,1])
-    norm_img, norm_label = read_from(norm, [0,0,1])
-    misc_img, misc_label = read_from(misc, [0,0,1])
-    spic_img, spic_label = read_from(spic, [0,0,1])
+    arch_img, arch_label = read_from(arch, 0)
+    asym_img, asym_label = read_from(asym, 1)
+    calc_img, calc_label = read_from(calc, 2)
+    circ_img, circ_label = read_from(circ, 3)
+    norm_img, norm_label = read_from(norm, 4)
+    misc_img, misc_label = read_from(misc, 5)
+    spic_img, spic_label = read_from(spic, 6)
 
     x = []
     x.extend(arch_img)
@@ -130,7 +130,9 @@ def get_data(imageShape):
     y.extend(norm_label)
     y.extend(misc_label)
     y.extend(spic_label)
+
     shuffle(x, y)
+    y = keras.utils.to_categorical(y, 7)
 
     train_size = int(len(x) * 0.99)
     train = True
@@ -153,7 +155,7 @@ batch_size = 32
 imageShape = (224, 224)
 
 # Model
-model = build_model(imageShape[0], imageShape[1], 3)
+model = build_model(imageShape[0], imageShape[1], 7)
 # Compiling Model
 print('Done Building Model...')
 
